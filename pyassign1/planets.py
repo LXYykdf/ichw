@@ -9,12 +9,13 @@ import turtle
 import math
 
 
-def orbit(planet,setx,turtlesize,color):
+def orbit(planet,a,turtlesize,color):
 	'''orbit函数能赋予行星位置信息及轨道颜色:行星名称、
 	初始位置、行星大小、行星及轨迹颜色。
 	'''
+	planet.speed(0)
 	planet.penup()					
-	planet.setx(setx)
+	planet.setx(a)
 	planet.turtlesize(turtlesize)
 	planet.shape('circle')
 	planet.color(color)
@@ -22,12 +23,12 @@ def orbit(planet,setx,turtlesize,color):
 	planet.pendown()		
 
 
-def run(planet,setx,i,speedk):
+def run(planet,a,i,speedk):
 	'''使行星在轨道上按一定的轨迹做单次短距离运动：行星名称、
 	行星轨道半长轴长、行星公转速度、参数方程中的角度变量、速度控制量。
 	'''
 	p=(i/180*math.pi)
-	b=(setx*setx-1600)**0.5
+	b=(a*a-1600)**0.5
 	x=a*math.cos(p*speedk)
 	y=b*math.sin(p*speedk)
 	planet.goto(x,y)
