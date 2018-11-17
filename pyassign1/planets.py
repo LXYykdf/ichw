@@ -22,15 +22,14 @@ def orbit(planet,setx,turtlesize,color):
 	planet.pendown()		
 
 
-def run(planet,a,speed,i,l):
+def run(planet,setx,i,speedk):
 	'''使行星在轨道上按一定的轨迹做单次短距离运动：行星名称、
 	行星轨道半长轴长、行星公转速度、参数方程中的角度变量、速度控制量。
 	'''
 	p=(i/180*math.pi)
-	b=(a*a-1600)**0.5
-	x=a*math.cos(p*l)
-	y=b*math.sin(p*l)
-	planet.speed(speed)
+	b=(setx*setx-1600)**0.5
+	x=a*math.cos(p*speedk)
+	y=b*math.sin(p*speedk)
 	planet.goto(x,y)
 
 def main():
@@ -80,12 +79,12 @@ orbit(Saturn,sa,1,'brown')
 
 k=1							#使行星们轮流间歇性运动起来
 while k<=720 :
-	run(Mercury,m,0,k,5)
-	run(Venus,v,10,k,4)
-	run(Earth,e,6,k,3)
-	run(Mars,ma,3,k,2)
-	run(Jupiter,j,1,k,1)
-	run(Saturn,sa,1,k,0.5)
+	run(Mercury,m,k,5)
+	run(Venus,v,k,4)
+	run(Earth,e,k,3)
+	run(Mars,ma,k,2)
+	run(Jupiter,j,k,1)
+	run(Saturn,sa,k,0.5)
 	k=k+1
 
 wn.exitonclick()
