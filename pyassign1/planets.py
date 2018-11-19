@@ -79,7 +79,7 @@ orbit(Saturn,sa,1,'brown')
 
 
 k=1							#使行星们轮流间歇性运动起来
-while k<=720 :
+while True :
 	run(Mercury,m,k,5)
 	run(Venus,v,k,4)
 	run(Earth,e,k,3)
