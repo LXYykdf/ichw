@@ -146,6 +146,9 @@ def testALL():
 	print('All tests passed')
 
 def main():
+	'''
+	main module
+	'''
 	currency_from = input('请输入起始货币英文简称:')
 	currency_to = input('请输入目标货币英文简称:')
 	amount_from = float(input('请输入起始货币金额:'))
