@@ -94,7 +94,7 @@ def count(final_answer):
 	else:
 		out={}
 		while count <len(final_answer):
-			if str(final_answer[count]) in out:
+			if str(final_answer) in out:
 				pass
 			else:
 				out[count]=str(final_answer[count])
