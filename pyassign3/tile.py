@@ -13,9 +13,13 @@ def main():
 	a=int(input('the width of your brick is:'))
 	b=int(input('the length of your brick is:'))
 
+
 	wall=[[0 for w in range(m) ] for e in range(n)]	#creat the wall you want to pave!
 	print_final(placing(wall,[],[],m,n,a,b))
-	draw_placing(placing(wall,[],[],m,n,a,b))
+	if placing(wall,[],[],m,n,a,b)==[[]]:
+		pass
+	else:
+		draw_placing(placing(wall,[],[],m,n,a,b),m,n,a,b)
 
 
 def find_start(wall,m,n,a,b):
@@ -74,8 +78,6 @@ def placing(wall,ans,final,m,n,a,b):
 		return final
 
 
-	print_final(placing(wall,[],[]))
-
 def count(final_answer):
 	'''coun the amount of solutions'''
 	v=0
@@ -116,15 +118,42 @@ def print_final(final_answer):
 
 
 
-def draw_placing(final_answer):
+def draw_placing(final_answer,m,n,a,b):
 	'''draw the choosen solution'''
+
 	wn=turtle.Screen()
 	wn.screensize(500,500)
 	t=turtle.Turtle()
+
+
+	t.pencolor('blue')
+	for h in range(n+1):
+		t.penup()
+		t.goto((-m/2)*30,(-n/2+h)*30)
+		t.setheading(0)
+		t.pendown()
+		t.fd(m*30)
+
+	for f in range(m+1):
+		t.penup()
+		t.goto((-m/2+f)*30,(-n/2)*30)
+		t.setheading(90)
+		t.pendown()
+		t.fd(n*30)
+
+
+	for w in range(n):
+		for q in range(m):
+			t.penup()
+			t.goto(15*(1+2*q-m)-3,15*(1+2*w-n)-3)
+			t.write(str(w*m+q), font=('Arial', 10, 'normal'))
+		
+	
+	t.pencolor('black')
 	x=int(turtle.numinput('Draw','choose a solution to draw between 1 and '\
 		+str(count(final_answer)),1,minval=1,maxval=count(final_answer)))
 	t.speed(0)
-	t.pen(3)
+	t.pensize(3)
 	choice=final_answer[x-1]
 
 	
@@ -163,3 +192,6 @@ def draw_placing(final_answer):
 
 if __name__=='__main__':
 	main()
+
+
+
