@@ -8,21 +8,30 @@ __email__  = '1800011815@pku.edu.cn'
 import turtle
 def main():
 	'''main function'''
+	global m
+	global n
+	global a
+	global b
+	'''
 	m=int(input('the width of your wall is:'))
 	n=int(input('the length of your wall is:'))
 	a=int(input('the width of your brick is:'))
 	b=int(input('the length of your brick is:'))
-
+	'''
+	m=2
+	n=1
+	a=1
+	b=1
 
 	wall=[[0 for w in range(m) ] for e in range(n)]	#creat the wall you want to pave!
-	print_final(placing(wall,[],[],m,n,a,b))
-	if placing(wall,[],[],m,n,a,b)==[[]]:
+	print_final(placing(wall,[],[]))
+	if placing(wall,[],[])==[[]]:
 		pass
 	else:
-		draw_placing(placing(wall,[],[],m,n,a,b),m,n,a,b)
+		draw_placing(placing(wall,[],[]))
 
 
-def find_start(wall,m,n,a,b):
+def find_start(wall):
 	'''find a blank space to begin!'''
 	for i in range(n):
 		for j in range(m):
@@ -31,10 +40,10 @@ def find_start(wall,m,n,a,b):
 	return [n,m]
 
 
-def placing(wall,ans,final,m,n,a,b):
+def placing(wall,ans,final):
 	'''find solutions '''
-	i=find_start(wall,m,n,a,b)[0]
-	j=find_start(wall,m,n,a,b)[1]
+	i=find_start(wall)[0]
+	j=find_start(wall)[1]
 
 	if i==n and j==m :
 		anscopy=ans.copy()
@@ -51,7 +60,7 @@ def placing(wall,ans,final,m,n,a,b):
 
 			out=tuple([(i+s)*m+j+d for d in range(a) for s in range(b)])
 			ans.append(out)
-			placing(wall,ans,final,m,n,a,b)
+			placing(wall,ans,final)
 
 			for k in range(b):
 				for g in range(a):
@@ -66,7 +75,7 @@ def placing(wall,ans,final,m,n,a,b):
 
 			out=tuple([(i+s)*m+j+d for d in range(b) for s in range(a)])
 			ans.append(out)
-			placing(wall,ans,final,m,n,a,b)
+			placing(wall,ans,final)
 
 			for k in range(a):
 				for g in range(b):
@@ -77,56 +86,53 @@ def placing(wall,ans,final,m,n,a,b):
 			final=[[]]
 		return final
 
-
 def count(final_answer):
-	'''coun the amount of solutions'''
-	v=0
-	if final_answer==[[]]:
-		pass
-	else:
-		out={}
-		while v <len(final_answer):
-			if str(final_answer) in out:
-				pass
-			else:
-				out[v]=str(final_answer[v])
-				v+=1
-	return v
-
-
-def print_final(final_answer):
-	'''print all the solutions'''
-	v=0
+	'''count the amount of solutions'''
+	count=0
 	if final_answer==[[]]:
 		print([[]])
 	else:
 		out={}
-		while v <len(final_answer):
-			if str(final_answer) in out:
+		while count <len(final_answer):
+			if str(final_answer[count]) in out:
 				pass
 			else:
-				out[v]=str(final_answer[v])
-				v+=1
-		if v==1:
+				out[count]=str(final_answer[count])
+				count+=1
+	return count
+
+def print_final(final_answer):
+	'''print all the solutions'''
+	count=0
+	if final_answer==[[]]:
+		print([[]])
+	else:
+		out={}
+		while count <len(final_answer):
+			if str(final_answer(count)) in out:
+				pass
+			else:
+				out[count]=str(final_answer[count])
+				count+=1
+	return count
+	if count==1:
 			print('We found one solution.')
-		else:
-			print('We found '+str(v)+' solutions.')
-		for o in range(v):
+	else:
+			print('We found '+str(count)+' solutions.')
+	for o in range(count):
 			print(out[o])
 	
 
-
-
-
-def draw_placing(final_answer,m,n,a,b):
+def draw_placing(final_answer):
 	'''draw the choosen solution'''
 
 	wn=turtle.Screen()
 	wn.screensize(500,500)
 	t=turtle.Turtle()
-
+	t.speed(0)
 
 	t.pencolor('blue')
+
 	for h in range(n+1):
 		t.penup()
 		t.goto((-m/2)*30,(-n/2+h)*30)
@@ -151,8 +157,7 @@ def draw_placing(final_answer,m,n,a,b):
 	
 	t.pencolor('black')
 	x=int(turtle.numinput('Draw','choose a solution to draw between 1 and '\
-		+str(count(final_answer)),1,minval=1,maxval=count(final_answer)))
-	t.speed(0)
+		+str(count),1,minval=1,maxval=count))
 	t.pensize(3)
 	choice=final_answer[x-1]
 
@@ -192,6 +197,5 @@ def draw_placing(final_answer,m,n,a,b):
 
 if __name__=='__main__':
 	main()
-
 
 
