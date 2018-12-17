@@ -69,10 +69,6 @@ def placing(wall,ans,final):
 			final=[[]]
 		return final
 
-
-	print_final(placing(wall,[],[],a,b))
-
-
 def print_final(final_answer):
 	if final_answer==[[]]:
 		print([[]])
@@ -91,8 +87,5 @@ def print_final(final_answer):
 			print('We found '+str(v)+' solutions.')
 			for o in range(v):
 				print(out[o])
-
-def draw_placing(final_answer):
-
 
 print_final(placing(wall,[],[]))
