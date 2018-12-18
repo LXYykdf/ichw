@@ -12,16 +12,12 @@ def main():
 	global n
 	global a
 	global b
-	'''
+
 	m=int(input('the width of your wall is:'))
 	n=int(input('the length of your wall is:'))
 	a=int(input('the width of your brick is:'))
 	b=int(input('the length of your brick is:'))
-	'''
-	m=2
-	n=1
-	a=1
-	b=1
+
 
 	wall=[[0 for w in range(m) ] for e in range(n)]	#creat the wall you want to pave!
 	print_final(placing(wall,[],[]))
@@ -90,31 +86,30 @@ def count(final_answer):
 	'''count the amount of solutions'''
 	count=0
 	if final_answer==[[]]:
-		print([[]])
+		pass
 	else:
 		out={}
-		while count <len(final_answer):
-			if str(final_answer) in out:
+		for i in final_answer:
+			if str(i) in out.values():
 				pass
 			else:
-				out[count]=str(final_answer[count])
+				out[count]=str(i)
 				count+=1
 	return count
 
 def print_final(final_answer):
 	'''print all the solutions'''
-	count=0
 	if final_answer==[[]]:
 		print([[]])
 	else:
+		count=0
 		out={}
-		while count <len(final_answer):
-			if str(final_answer(count)) in out:
+		for i in final_answer:
+			if str(i) in out.values():
 				pass
 			else:
-				out[count]=str(final_answer[count])
+				out[count]=str(i)
 				count+=1
-	return count
 	if count==1:
 			print('We found one solution.')
 	else:
@@ -157,7 +152,7 @@ def draw_placing(final_answer):
 	
 	t.pencolor('black')
 	x=int(turtle.numinput('Draw','choose a solution to draw between 1 and '\
-		+str(count),1,minval=1,maxval=count))
+		+str(count(final_answer)),1,minval=1,maxval=int(count(final_answer))))
 	t.pensize(3)
 	choice=final_answer[x-1]
 
@@ -197,5 +192,6 @@ def draw_placing(final_answer):
 
 if __name__=='__main__':
 	main()
+
 
 
