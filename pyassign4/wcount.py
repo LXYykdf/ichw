@@ -37,7 +37,7 @@ def wcount(lines, topn=10):
 		newans=ans
 	
 	for result in newans:
-		print(result[0]+' '*int(15-len(result[0]))+str(result[1]))
+		print(result[0]+'\t',result[1])
 
 
 	return
